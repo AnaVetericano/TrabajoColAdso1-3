@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 private lateinit var binding: ActivityMainBinding
 
+
     private var token: String? = null   // aquí guardaremos la "manilla"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,17 +21,12 @@ private lateinit var binding: ActivityMainBinding
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            val response = RetrofitClient.api.getCurrentUser("Bearer $token")
+        binding.btnIngresar.setOnClickListener{
 
-            if (response.isSuccessful) {
-                val user = response.body()
-                val accessToken = user?.accessToken
-            }
         }
 
-        hacerLogin("emilys", "emilyspass")
-    }
+        hacerLogin("emilys", "emilyspass") }
+
 
 
     private fun hacerLogin(usuario: String, clave: String) {
